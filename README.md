@@ -1,54 +1,48 @@
 # miniflux-cli
 
+> [中文文档](README.zh.md)
+
 A Python CLI for managing Miniflux RSS feeds remotely, optimized for agent and programmatic usage.
 
-基于 Python 开发的 Miniflux RSS 远程管理命令行工具，专为 Agent 和程序化场景设计。
+## Features
 
----
+- **Full API Coverage**: Feeds, Categories, Entries, OPML, Users, API Keys, System
+- **Agent-friendly**: Global `--json` flag for structured output
+- **Multiple Auth Methods**: API Key (recommended) or Username/Password
+- **Configuration Flexibility**: Environment variables or config file (TOML/JSON)
+- **Clean Exit Codes**: Suitable for scripting and automation
 
-## Features | 特性
-
-- **Full API Coverage** | 完整 API 封装: Feeds, Categories, Entries, OPML, Users, API Keys, System
-- **Agent-friendly** | 适合 Agent: Global `--json` flag for structured output
-- **Multiple Auth Methods** | 多种认证: API Key (recommended) or Username/Password
-- **Configuration Flexibility** | 配置灵活: Environment variables or config file (TOML/JSON)
-- **Clean Exit Codes** | 清晰退出码: Suitable for scripting and automation
-
----
-
-## Installation | 安装
+## Installation
 
 ```bash
 pip install -e .
 ```
 
-For development | 开发依赖安装:
+For development:
 
 ```bash
 pip install -e ".[dev]"
 ```
 
----
+## Quick Start
 
-## Quick Start | 快速开始
+### Configuration
 
-### Configuration | 配置
-
-**Environment Variables | 环境变量** (recommended | 推荐):
+**Environment Variables** (recommended):
 
 ```bash
 export MINIFLUX_URL="https://miniflux.example.org"
 export MINIFLUX_API_KEY="your-api-key"
 ```
 
-Or use Username/Password | 或使用用户名密码:
+Or use Username/Password:
 
 ```bash
 export MINIFLUX_USERNAME="admin"
 export MINIFLUX_PASSWORD="secret"
 ```
 
-**Config File | 配置文件** (`~/.config/miniflux-cli/config.toml`):
+**Config File** (`~/.config/miniflux-cli/config.toml`):
 
 ```toml
 url = "https://miniflux.example.org"
@@ -56,51 +50,47 @@ api_key = "your-api-key"
 timeout = 30.0
 ```
 
-Use custom path | 使用自定义路径:
+Use custom path:
 
 ```bash
 miniflux-cli --config /path/to/config.toml feeds list
 ```
 
----
-
-## Usage Examples | 使用示例
+## Usage Examples
 
 ```bash
-# List all feeds | 列出所有订阅
+# List all feeds
 miniflux-cli feeds list
 
-# Output as JSON for agents | JSON 输出供 Agent 解析
+# Output as JSON for agents
 miniflux-cli --json feeds list
 
-# Create a feed | 添加订阅
+# Create a feed
 miniflux-cli feeds create "https://news.ycombinator.com/rss" --category-id 2
 
-# Refresh all feeds | 刷新全部订阅
+# Refresh all feeds
 miniflux-cli feeds refresh-all
 
-# List unread entries | 列出未读文章
+# List unread entries
 miniflux-cli --json entries list --status unread --limit 10
 
-# Mark entry as read | 标记文章已读
+# Mark entry as read
 miniflux-cli entries mark-read 123
 
-# Toggle bookmark | 收藏/取消收藏
+# Toggle bookmark
 miniflux-cli entries bookmark 123
 
-# Export OPML | 导出 OPML
+# Export OPML
 miniflux-cli opml export > feeds.opml
 
-# Import OPML | 导入 OPML
+# Import OPML
 miniflux-cli opml import feeds.opml
 
-# System health | 系统健康检查
+# System health
 miniflux-cli system health
 ```
 
----
-
-## Command Reference | 命令参考
+## Command Reference
 
 ```
 miniflux-cli [GLOBAL_OPTS] <NOUN> <VERB> [ARGS/OPTS]
@@ -183,39 +173,41 @@ miniflux-cli [GLOBAL_OPTS] <NOUN> <VERB> [ARGS/OPTS]
 | `system integrations` | Integrations status |
 | `system flush-history` | Flush history |
 
----
+## Global Options
 
-## Global Options | 全局选项
+- `--config FILE` — Path to config file
+- `--json` — Output raw JSON
+- `-v, --verbose` — Verbose error output
 
-- `--config FILE` — Path to config file | 配置文件路径
-- `--json` — Output raw JSON | 输出原始 JSON
-- `-v, --verbose` — Verbose error output | 显示详细错误信息
+## Exit Codes
 
----
+| Code | Meaning |
+|------|---------|
+| 0 | Success |
+| 1 | Generic CLI/API error |
+| 2 | Invalid argument or bad request |
+| 3 | Authentication/authorization failure |
+| 4 | Resource not found |
+| 5 | Server error (5xx) |
 
-## Testing | 测试
+## Testing
 
 ```bash
-# Run linters | 运行静态检查
+# Run linters
 make lint
 
-# Run unit tests | 运行单元测试
+# Run unit tests
 make test
 
-# Run end-to-end tests (requires Docker) | 运行端到端测试（需要 Docker）
+# Run end-to-end tests (requires Docker)
 make e2e
 ```
 
----
+## Documentation
 
-## Documentation | 文档
+- [中文文档](README.zh.md)
+- [docs/miniflux-cli-usage.md](docs/miniflux-cli-usage.md) — detailed Chinese usage guide
 
-See [docs/miniflux-cli-usage.md](docs/miniflux-cli-usage.md) for detailed usage in Chinese.
-
-详细中文使用文档请查看 [docs/miniflux-cli-usage.md](docs/miniflux-cli-usage.md)。
-
----
-
-## License | 许可证
+## License
 
 MIT
