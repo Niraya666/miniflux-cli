@@ -1,0 +1,46 @@
+
+# Keyboard Shortcuts
+[Home](https://miniflux.app/index.html) > [Documentation](https://miniflux.app/docs/index.html)
+
+## Sections Navigation [¶](https://miniflux.app/docs/keyboard_shortcuts.html#sections)
+- `g u`: Go to the unread page
+- `g b`: Go to the starred page
+- `g h`: Go to the history page
+- `g f`: Go to the feed page
+- `g c`: Go to the categories page
+- `g s`: Go to the settings page
+- `\+`: Add a subscription
+- `?`: Show keyboard shortcuts help
+
+## Items Navigation [¶](https://miniflux.app/docs/keyboard_shortcuts.html#items)
+- `p` or `k` or `◄`: Go to the previous item
+- `n` or `j` or `►`: Go to the next item
+- `F`: Go to the feed page
+- `g g`: Go to the first item
+- `G`: Go to the last item
+
+## Pages Navigation [¶](https://miniflux.app/docs/keyboard_shortcuts.html#pages)
+- `h`: Go to the previous page
+- `l`: Go to the next page
+
+## Actions [¶](https://miniflux.app/docs/keyboard_shortcuts.html#actions)
+- `o` or `Enter`: Open the selected item
+- `v`: Open the original link in a new tab
+- `V`: Open the original link in the current tab \(entry view only\)
+- `c`: Open the comments link in a new tab
+- `C`: Open the comments link in the current tab
+- `m`: Toggle read/unread, focus next
+- `M`: Toggle read/unread, focus previous
+- `A`: Mark the current page as read
+- `d`: Fetch the original web page and apply scraper rules or readability
+- `f`: Star or unstar the current entry
+- `s`: Save the article to configured third\-party services
+- `a`: Toggle open/close entry attachments
+- `z \+ t`: Scroll the item to the top
+- `R`: Refresh all feeds in the background
+- `\#`: Remove the current feed
+- `/`: Set focus on the search form
+- `Esc`: Close modal dialogs
+
+Mozilla Firefox blocks the opening of a new tab if you use the shortcut `v`. You must authorize Miniflux to open new tabs in your Firefox settings.
+[Edit this page](https://github.com/miniflux/website/edit/main/content/docs/keyboard_shortcuts.md)

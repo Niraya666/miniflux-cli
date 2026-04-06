@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "miniflux-cli"
+version = "0.1.0"
+description = "A CLI tool for managing Miniflux RSS feeds"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+    "miniflux>=1.0.0",
+    "pydantic>=2.0",
+    "pydantic-settings[toml]>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "mypy>=1.0",
+    "ruff>=0.1.0",
+    "responses>=0.24.0",
+]
+
+[project.scripts]
+miniflux-cli = "miniflux_cli.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/miniflux_cli"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+warn_no_return = true
+enable_error_code = ["ignore-without-code"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=src/miniflux_cli --cov-report=term-missing"
